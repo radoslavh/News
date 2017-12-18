@@ -1,24 +1,23 @@
 package h.radoslav.au.news.datasource
 
-import h.radoslav.au.news.models.News
+import h.radoslav.au.news.models.Articles
+import h.radoslav.au.news.services.NewsService
 import io.reactivex.Observable
-import java.util.*
 
-
-/**
- * Created by Radoslav Hlinka on 18/12/2017.
- */
 class DataSource : IDataSource {
 
-    override fun getAllNews(): Observable<List<News>> {
-        return Observable.fromCallable(this::getNews);
+    private var observable: Observable<List<Articles>> = Observable.empty()
+
+    override fun getAllNews(): Observable<List<Articles>> {
+        NewsService(this).load()
+        return getNews();
     }
 
-    //TODO https://newsapi.org/v2/top-headlines?category=business&language=en&apiKey=86b3956adadb46e48697c2312b3af90a
+    override fun setArticles(articles: List<Articles>) {
+        observable = Observable.fromArray(articles)
+    }
 
-    private fun getNews(): List<News> {
-        return Arrays
-                .asList(News("Title 1","Text"),
-                        News("Title 2","Text"))
+    private fun getNews(): Observable<List<Articles>> {
+        return observable;
     }
 }

@@ -1,0 +1,12 @@
+ext {
+    kotlin_version = '1.2.0'
+
+    support_version = '26.1.0'
+    constraint_version = '1.0.2'
+    rxandroid_version = '2.0.1'
+    rxjava_version = '2.1.6'
+    retrofit_version = '2.3.0'
+    runner_version = '1.0.1'
+    junit_version = '4.12'
+    espresso_version = '3.0.1'
+}
