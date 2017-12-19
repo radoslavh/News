@@ -1,7 +1,12 @@
 package h.radoslav.au.news.ui.article
 
-import android.app.Fragment
+import h.radoslav.au.news.ui.base.BaseFragment
 
-class NewsFragment : Fragment() {
 
+class ArticleFragment : BaseFragment() {
+
+    companion object {
+        val TAG: String = ArticleFragment::class.java.simpleName
+        fun newInstance() = ArticleFragment()
+    }
 }

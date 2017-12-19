@@ -1,4 +1,4 @@
-package h.radoslav.au.news.ui
+package h.radoslav.au.news.ui.news
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import h.radoslav.au.news.R
 import h.radoslav.au.news.models.Article
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+
 
 class NewsViewAdapter(var news: Observable<List<Article>>) : RecyclerView.Adapter<NewsViewHolder>() {
 

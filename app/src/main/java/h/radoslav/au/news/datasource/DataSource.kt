@@ -7,7 +7,9 @@ import h.radoslav.au.news.datasource.remote.NewsService
 import io.reactivex.Observable
 import java.util.ArrayList
 
-class DataSource(private var mRemoteDataSource: NewsDataSource ) : IDataSource {
+class DataSource : IDataSource {
+
+    private val remoteDataSource: NewsDataSource by lazy { NewsDataSource() }
 
     private var observable: Observable<List<Article>> = Observable.empty()
 
@@ -28,7 +30,7 @@ class DataSource(private var mRemoteDataSource: NewsDataSource ) : IDataSource {
                                           callback: ILoadDataCallback<Article>) {
 
 
-        mRemoteDataSource.getArticles(sourceId, object : ILoadDataCallback<Article> {
+        remoteDataSource.getArticles(sourceId, object : ILoadDataCallback<Article> {
             override fun onDataLoaded(list: List<Article>) {
                 callback.onDataLoaded(ArrayList(list))
             }

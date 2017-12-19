@@ -1,8 +1,8 @@
 package h.radoslav.au.news.ui.article
 
-import android.support.v7.app.AppCompatActivity
+import h.radoslav.au.news.ui.base.BaseActivity
 
 
-class NewsActivity : AppCompatActivity() {
+class ArticleActivity : BaseActivity() {
 
 }

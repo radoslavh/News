@@ -4,6 +4,7 @@ import h.radoslav.au.news.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 class NewsClient {
 
     private var newsService: NewsAPI

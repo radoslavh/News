@@ -1,14 +1,14 @@
-package h.radoslav.au.news.ui
+package h.radoslav.au.news.ui.news
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import h.radoslav.au.news.NewsApplication
 import h.radoslav.au.news.R
 import h.radoslav.au.news.datasource.IDataSource
+import h.radoslav.au.news.ui.base.BaseActivity
 import io.reactivex.annotations.NonNull
 
-class NewsActivity : AppCompatActivity() {
+
+class NewsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

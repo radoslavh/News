@@ -1,4 +1,4 @@
-package h.radoslav.au.news.ui
+package h.radoslav.au.news.ui.news
 
 import android.content.Context
 import android.util.AttributeSet

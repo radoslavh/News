@@ -1,10 +1,8 @@
 package h.radoslav.au.news.datasource.remote
 
-import android.util.Log
 import h.radoslav.au.news.BuildConfig
 import h.radoslav.au.news.models.Article
 import h.radoslav.au.news.models.NewsSource
-import h.radoslav.au.news.ui.NewsViewAdapter
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.Callback

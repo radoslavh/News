@@ -1,7 +1,5 @@
-package h.radoslav.au.news.ui
+package h.radoslav.au.news.ui.news
 
-import android.annotation.SuppressLint
-import android.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -10,9 +8,11 @@ import android.view.ViewGroup
 import h.radoslav.au.news.NewsApplication
 import h.radoslav.au.news.R
 import h.radoslav.au.news.datasource.IDataSource
+import h.radoslav.au.news.ui.base.BaseFragment
 import io.reactivex.annotations.NonNull
 
-class NewsFragment : Fragment() {
+
+class NewsFragment : BaseFragment() {
 
     private val adapter: NewsViewAdapter by lazy { NewsViewAdapter(getDataSource().getAllNews()) }
 
@@ -33,7 +33,7 @@ class NewsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (savedInstanceState == null) {
-            //TODO Load the news
+            //TODO load news
         }
     }
 
