@@ -13,18 +13,21 @@ class NewsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
-        initRecyclerView()
-    }
 
-    private fun initRecyclerView() {
-        val mRecyclerView = findViewById<NewsRecyclerView>(R.id.recycleView)
-        mRecyclerView.layoutManager = LinearLayoutManager(this)
-        mRecyclerView.adapter = NewsViewAdapter(getDataSource().getAllNews())
-        mRecyclerView.setEmptyView(findViewById(R.id.empty_view))
+        initFragment()
     }
 
     @NonNull
     private fun getDataSource(): IDataSource {
         return (application as NewsApplication).getDataSource()
+    }
+
+    private fun initFragment() {
+        val tag = NewsFragment.TAG
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, NewsFragment.newInstance(), tag)
+                .addToBackStack(null)
+                .commit()
+
     }
 }
