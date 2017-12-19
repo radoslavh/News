@@ -1,4 +1,4 @@
-package h.radoslav.au.news.services
+package h.radoslav.au.news.datasource.remote
 
 import h.radoslav.au.news.models.NewsSource
 import retrofit2.Call

@@ -2,7 +2,7 @@ package h.radoslav.au.news.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Articles(
+data class Article(
         @SerializedName("author") var author: String? = null,
         @SerializedName("title") var title: String = "",
         @SerializedName("description") var description: String = "",

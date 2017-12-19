@@ -4,14 +4,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import h.radoslav.au.news.R
-import h.radoslav.au.news.models.Articles
+import h.radoslav.au.news.models.Article
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class NewsViewAdapter(var news: Observable<List<Articles>>) : RecyclerView.Adapter<NewsViewHolder>() {
+class NewsViewAdapter(var news: Observable<List<Article>>) : RecyclerView.Adapter<NewsViewHolder>() {
 
-    private var observable: Observable<List<Articles>>? = null
-    private var currentList: List<Articles>
+    private var observable: Observable<List<Article>>? = null
+    private var currentList: List<Article>
 
     init {
         this.currentList = emptyList()

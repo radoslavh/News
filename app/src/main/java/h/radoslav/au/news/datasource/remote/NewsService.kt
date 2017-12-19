@@ -1,10 +1,9 @@
-package h.radoslav.au.news.services
+package h.radoslav.au.news.datasource.remote
 
 import h.radoslav.au.news.BuildConfig
 import h.radoslav.au.news.datasource.IDataSource
-import h.radoslav.au.news.models.Articles
+import h.radoslav.au.news.models.Article
 import h.radoslav.au.news.models.NewsSource
-import io.reactivex.annotations.NonNull
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +32,7 @@ class NewsService(var client: IDataSource) : Callback<NewsSource> {
 
     override fun onResponse(call: Call<NewsSource>, response: Response<NewsSource>) {
         if (response.isSuccessful()) {
-            val articles: List<Articles> = response.body()!!.articles
+            val articles: List<Article> = response.body()!!.articles
             client.setArticles(articles)
 
         } else {
