@@ -1,7 +1,7 @@
-package h.radoslav.au.news.datasource.remote
+package h.radoslav.au.news.datasource.network
 
 import h.radoslav.au.news.models.NewsSource
-import retrofit2.Call
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,5 +12,5 @@ interface NewsAPI {
     fun getNews(
             @Query("category") category: String,
             @Query("language") language: String,
-            @Query("apiKey") apiKey: String): Call<NewsSource>
+            @Query("apiKey") apiKey: String): Observable<NewsSource>
 }

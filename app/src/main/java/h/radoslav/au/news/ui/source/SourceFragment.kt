@@ -47,10 +47,6 @@ class SourceFragment : BaseFragment() {
         mRecyclerView.setEmptyView(mView.findViewById(R.id.empty_view))
     }
 
-    @NonNull
-    private fun getDataSource(): IDataSource {
-        return (activity.applicationContext as NewsApplication).getDataSource()
-    }
 }
 
 

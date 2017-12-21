@@ -8,11 +8,11 @@ apply from: '../api.gradle'
 apply from: '../versions.gradle'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "h.radoslav.au.news"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -39,8 +39,13 @@ dependencies {
 
     compile "com.android.support:appcompat-v7:$support_version"
     compile "com.android.support:recyclerview-v7:$support_version"
-
     compile "com.android.support.constraint:constraint-layout:$constraint_version"
+
+    // Architecture Components
+    implementation "android.arch.lifecycle:extensions:$arch_comp"
+    testImplementation "android.arch.core:core-testing:$arch_comp"
+    annotationProcessor "android.arch.lifecycle:compiler:$arch_comp"
+    implementation "android.arch.lifecycle:reactivestreams:$arch_comp"
 
     compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     compile "io.reactivex.rxjava2:rxjava:$rxjava_version"

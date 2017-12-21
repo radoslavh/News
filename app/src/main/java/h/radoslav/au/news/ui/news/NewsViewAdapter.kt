@@ -5,22 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import h.radoslav.au.news.R
 import h.radoslav.au.news.models.Article
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 
 
-class NewsViewAdapter(var news: Observable<List<Article>>) : RecyclerView.Adapter<NewsViewHolder>() {
+class NewsViewAdapter() : RecyclerView.Adapter<NewsViewHolder>() {
 
-    private var observable: Observable<List<Article>>? = null
-    private var currentList: List<Article>
+    private val currentList: MutableList<Article> = mutableListOf()
 
-    init {
-        this.currentList = emptyList()
-        this.observable = news
-        this.observable?.observeOn(AndroidSchedulers.mainThread())?.subscribe { items ->
-            this.currentList = items
-            this.notifyDataSetChanged()
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder? {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        return NewsViewHolder(layoutInflater.inflate(R.layout.item_layout, parent, false))
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
@@ -31,8 +24,9 @@ class NewsViewAdapter(var news: Observable<List<Article>>) : RecyclerView.Adapte
         return currentList.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): NewsViewHolder? {
-        val v = LayoutInflater.from(parent?.context).inflate(R.layout.item_layout, parent, false)
-        return NewsViewHolder(v)
+    fun addArticles(articles: List<Article>) {
+        currentList.clear()
+        currentList.addAll(articles)
+        notifyDataSetChanged()
     }
 }

@@ -10,6 +10,5 @@ class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(news: Article) = with(itemView) {
         itemView.textViewItem.text = news.title
-
     }
 }

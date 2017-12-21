@@ -17,10 +17,6 @@ class NewsActivity : BaseActivity() {
         initFragment()
     }
 
-    @NonNull
-    private fun getDataSource(): IDataSource {
-        return (application as NewsApplication).getDataSource()
-    }
 
     private fun initFragment() {
         val tag = NewsFragment.TAG

@@ -1,13 +1,10 @@
 package h.radoslav.au.news.datasource
 
-import h.radoslav.au.news.models.Article
-import io.reactivex.Observable
+import android.arch.lifecycle.LiveData
+import h.radoslav.au.news.models.NewsSource
 
 
 interface IDataSource {
 
-    fun getAllNews(): Observable<List<Article>>
-
-    fun setArticles(articles: List<Article>)
-
+    fun getArticles(category: String, language: String): LiveData<NewsSource>
 }

@@ -1,9 +1,9 @@
 package h.radoslav.au.news
 
 import android.app.Application
+import android.support.annotation.NonNull
 import h.radoslav.au.news.datasource.DataSource
 import h.radoslav.au.news.datasource.IDataSource
-import io.reactivex.annotations.NonNull
 
 class NewsApplication : Application() {
 
