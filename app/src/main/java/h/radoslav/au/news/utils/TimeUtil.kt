@@ -9,7 +9,7 @@ class TimeUtil {
 
     companion object {
 
-        private val TIME_FORMAT_PATTERN: String = "dd-MM-yyyy HH:mm:ss"
+        private val TIME_FORMAT_PATTERN: String = "HH:mm:ss a  dd-MMM-yy"
         private val TIME_FORMAT_RECEIVED: String = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 
         private val formatTo: SimpleDateFormat = SimpleDateFormat(TIME_FORMAT_PATTERN, Locale.getDefault())

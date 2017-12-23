@@ -1,8 +1,9 @@
-package h.radoslav.au.news.ui.source
+package h.radoslav.au.news.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import h.radoslav.au.news.models.NewsSource
+import h.radoslav.au.news.ui.viewholders.SourceViewHolder
 import io.reactivex.Observable
 
 

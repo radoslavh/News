@@ -5,12 +5,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import h.radoslav.au.news.NewsApplication
 import h.radoslav.au.news.R
-import h.radoslav.au.news.datasource.IDataSource
+import h.radoslav.au.news.ui.adapters.SourceViewAdapter
 import h.radoslav.au.news.ui.base.BaseFragment
 import h.radoslav.au.news.ui.news.NewsRecyclerView
-import io.reactivex.annotations.NonNull
 
 
 class SourceFragment : BaseFragment() {

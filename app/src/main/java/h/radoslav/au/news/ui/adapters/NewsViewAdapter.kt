@@ -1,10 +1,11 @@
-package h.radoslav.au.news.ui.news
+package h.radoslav.au.news.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import h.radoslav.au.news.R
 import h.radoslav.au.news.models.Article
+import h.radoslav.au.news.ui.viewholders.NewsViewHolder
 
 
 class NewsViewAdapter() : RecyclerView.Adapter<NewsViewHolder>() {

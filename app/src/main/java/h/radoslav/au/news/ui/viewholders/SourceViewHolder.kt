@@ -1,4 +1,4 @@
-package h.radoslav.au.news.ui.source
+package h.radoslav.au.news.ui.viewholders
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

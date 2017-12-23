@@ -1,26 +1,26 @@
 package h.radoslav.au.news.ui.news
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.annotation.NonNull
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import h.radoslav.au.news.NewsApplication
 import h.radoslav.au.news.R
-import h.radoslav.au.news.datasource.DataSource
 import h.radoslav.au.news.datasource.IDataSource
-import h.radoslav.au.news.models.Article
+import h.radoslav.au.news.ui.adapters.NewsViewAdapter
 import h.radoslav.au.news.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.item_layout.view.*
 
 
 class NewsFragment : BaseFragment() {
 
-    private lateinit var adapter: NewsViewAdapter
+    private val adapter: NewsViewAdapter by lazy { NewsViewAdapter() }
 
-    private lateinit var newsViemModel: NewsViewModel
+    private val viemModel: NewsViewModel by lazy { NewsViewModel(getDataSource()) }
+
     private lateinit var mView: View
 
     private val CATEGORY = "business"
@@ -34,19 +34,17 @@ class NewsFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savInsState: Bundle?): View? {
         mView = inflater!!.inflate(R.layout.fragment_news, container, false)
-        adapter = NewsViewAdapter()
         return mView
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        newsViemModel = NewsViewModel(getDataSource())
         initRecyclerView()
         subscribeViewModel()
     }
 
     private fun subscribeViewModel() {
-        newsViemModel.getArticles(CATEGORY, LANG).observeForever({
+        viemModel.getArticles(CATEGORY, LANG).observeForever({
             adapter.addArticles(it!!.articles)
         })
     }

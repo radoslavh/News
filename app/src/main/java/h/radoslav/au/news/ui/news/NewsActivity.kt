@@ -13,7 +13,6 @@ class NewsActivity : BaseActivity() {
         initFragment()
     }
 
-
     private fun initFragment() {
         val tag = NewsFragment.TAG
         fragmentManager.beginTransaction()
