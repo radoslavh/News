@@ -1,11 +1,8 @@
 package h.radoslav.au.news.ui.news
 
 import android.os.Bundle
-import h.radoslav.au.news.NewsApplication
 import h.radoslav.au.news.R
-import h.radoslav.au.news.datasource.IDataSource
 import h.radoslav.au.news.ui.base.BaseActivity
-import io.reactivex.annotations.NonNull
 
 
 class NewsActivity : BaseActivity() {
@@ -13,7 +10,6 @@ class NewsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
-
         initFragment()
     }
 
