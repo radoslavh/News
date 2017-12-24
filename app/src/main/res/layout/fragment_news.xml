@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <h.radoslav.au.news.ui.news.NewsRecyclerView
-        android:id="@+id/recycleView"
-        android:scrollbars="vertical"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-    <include layout="@layout/empty_view" />
+        <h.radoslav.au.news.ui.news.NewsRecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
 
-</android.support.constraint.ConstraintLayout>
+        <include layout="@layout/empty_view" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

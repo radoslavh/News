@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import h.radoslav.au.news.NewsApplication
 import h.radoslav.au.news.R
+import h.radoslav.au.news.databinding.FragmentNewsBinding
 import h.radoslav.au.news.datasource.IDataSource
 import h.radoslav.au.news.ui.adapters.NewsViewAdapter
 import h.radoslav.au.news.ui.base.BaseFragment
@@ -22,14 +23,17 @@ class NewsFragment : BaseFragment() {
     private val CATEGORY = "business"
     private val LANG = "en"
 
+    private lateinit var binding: FragmentNewsBinding
+
     companion object {
         val TAG: String = NewsFragment::class.java.simpleName
         fun newInstance() = NewsFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savInsState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_news, container, false)
+        binding = FragmentNewsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -45,10 +49,9 @@ class NewsFragment : BaseFragment() {
     }
 
     private fun initRecyclerView() {
-        val mRecyclerView = view.findViewById<NewsRecyclerView>(R.id.recycleView)
-        mRecyclerView.layoutManager = LinearLayoutManager(activity)
-        mRecyclerView.adapter = adapter
-        mRecyclerView.setEmptyView(view.findViewById(R.id.empty_view))
+        binding.recycleView.layoutManager = LinearLayoutManager(activity)
+        binding.recycleView.adapter = adapter
+        binding.recycleView.setEmptyView(view.findViewById(R.id.empty_view))
     }
 
     @NonNull
