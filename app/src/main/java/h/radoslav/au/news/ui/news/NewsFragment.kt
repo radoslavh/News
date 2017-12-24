@@ -51,7 +51,7 @@ class NewsFragment : BaseFragment() {
     private fun initRecyclerView() {
         binding.recycleView.layoutManager = LinearLayoutManager(activity)
         binding.recycleView.adapter = adapter
-        binding.recycleView.setEmptyView(view.findViewById(R.id.empty_view))
+        binding.recycleView.setEmptyView(binding.emptyView)
     }
 
     @NonNull
