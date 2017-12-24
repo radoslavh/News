@@ -8,8 +8,8 @@ import h.radoslav.au.news.models.NewsSource
 
 class NewsViewModel(private var remoteData: IDataSource) {
 
-    fun getArticles(category: String, language: String): LiveData<NewsSource>
-            = remoteData.getArticles(category, language)
+    fun getNews(category: String, language: String): LiveData<NewsSource>
+            = remoteData.getNews(category, language)
 
     fun getArticle(language: String): LiveData<Article>
             = remoteData.getArticle(language)

@@ -13,7 +13,7 @@ class NewsDataSource {
 
     private val mNewsClient: NewsAPI by lazy { NewsClient().getClient() }
 
-    fun getArticles(category: String, language: String): LiveData<NewsSource> {
+    fun getNews(category: String, language: String): LiveData<NewsSource> {
         val liveData = MutableLiveData<NewsSource>()
 
         mNewsClient
@@ -36,6 +36,31 @@ class NewsDataSource {
 
         return liveData
     }
+
+    fun getArticles(source: String): LiveData<NewsSource> {
+        val liveData = MutableLiveData<NewsSource>()
+
+        mNewsClient
+                .getArticles(source, BuildConfig.API_KEY)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(liveData::setValue)
+
+        return liveData
+    }
+
+    fun getEverything(query: String): LiveData<NewsSource> {
+        val liveData = MutableLiveData<NewsSource>()
+
+        mNewsClient
+                .getEverything(query, BuildConfig.API_KEY)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(liveData::setValue)
+
+        return liveData
+    }
+
 
 }
 
