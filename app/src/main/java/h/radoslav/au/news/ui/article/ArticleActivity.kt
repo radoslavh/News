@@ -21,7 +21,6 @@ class ArticleActivity : BaseActivity() {
         val tag = ArticleFragment.TAG
         fragmentManager.beginTransaction()
                 .add(R.id.container, ArticleFragment.newInstance(str),tag)
-                .addToBackStack(null)
                 .commit()
 
     }

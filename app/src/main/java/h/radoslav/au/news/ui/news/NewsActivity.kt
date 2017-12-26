@@ -15,11 +15,12 @@ class NewsActivity : BaseActivity() {
     }
 
     private fun initFragment() {
+        val fm = fragmentManager
         val tag = NewsFragment.TAG
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, NewsFragment.newInstance(), tag)
-                .addToBackStack(null)
-                .commit()
-
+        fm.findFragmentByTag(tag) ?: NewsFragment.newInstance().apply {
+            fm.beginTransaction()
+                    .add(R.id.container, this, tag)
+                    .commit()
+        }
     }
 }

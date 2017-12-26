@@ -1,12 +1,8 @@
 package h.radoslav.au.news.ui.source
 
 import android.os.Bundle
-import h.radoslav.au.news.NewsApplication
 import h.radoslav.au.news.R
-import h.radoslav.au.news.datasource.IDataSource
 import h.radoslav.au.news.ui.base.BaseActivity
-import h.radoslav.au.news.ui.news.NewsFragment
-import io.reactivex.annotations.NonNull
 
 
 class SourceActivity : BaseActivity() {
@@ -18,13 +14,13 @@ class SourceActivity : BaseActivity() {
         initFragment()
     }
 
-
     private fun initFragment() {
-        val tag = NewsFragment.TAG
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, SourceFragment.newInstance(), tag)
-                .addToBackStack(null)
-                .commit()
-
+        val fm = fragmentManager
+        val tag = SourceFragment.TAG
+        fm.findFragmentByTag(tag) ?: SourceFragment.newInstance().apply {
+            fm.beginTransaction()
+                    .add(R.id.container, this, tag)
+                    .commit()
+        }
     }
 }
