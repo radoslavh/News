@@ -3,6 +3,8 @@ package h.radoslav.au.news.datasource.network
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import h.radoslav.au.news.BuildConfig
+import h.radoslav.au.news.datasource.ISchedulers
+import h.radoslav.au.news.datasource.Schedulers
 import h.radoslav.au.news.models.Article
 import h.radoslav.au.news.models.NewsSource
 
@@ -11,7 +13,7 @@ class NewsDataSource {
 
     private val mNewsClient: NewsAPI by lazy { NewsClient().getClient() }
 
-    private val mScheduler: ISchedulers by lazy {Schedulers()}
+    private val mScheduler: ISchedulers by lazy { Schedulers() }
 
     fun getNews(category: String, language: String): LiveData<NewsSource> {
         val liveData = MutableLiveData<NewsSource>()

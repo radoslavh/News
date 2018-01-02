@@ -1,4 +1,4 @@
-package h.radoslav.au.news.datasource.network
+package h.radoslav.au.news.datasource
 
 import io.reactivex.Scheduler
 

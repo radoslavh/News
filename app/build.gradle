@@ -58,6 +58,9 @@ dependencies {
     testImplementation "android.arch.core:core-testing:$arch_comp"
     annotationProcessor "android.arch.lifecycle:compiler:$arch_comp"
     implementation "android.arch.lifecycle:reactivestreams:$arch_comp"
+    implementation "android.arch.persistence.room:runtime:$arch_comp"
+    implementation "android.arch.persistence.room:rxjava2:$arch_comp"
+    kapt "android.arch.persistence.room:compiler:$arch_comp"
 
     compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
