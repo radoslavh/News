@@ -33,3 +33,7 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task runUnitTests(dependsOn: [':app:testDebugUnitTest']) {
+    description 'Run all unit tests'
+}
