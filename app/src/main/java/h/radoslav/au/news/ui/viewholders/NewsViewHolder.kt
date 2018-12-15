@@ -16,24 +16,26 @@ import androidx.recyclerview.widget.RecyclerView
 
 class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(news: Article) = with(itemView) {
-        item_title.text = news.title
-        item_description.text = news.description
-        item_date.text = TimeUtil.timeFormat(news.publishedAt).toUpperCase()
+    fun bind(article: Article) = with(itemView) {
+        item_title.text = article.title
+        item_description.text = article.description
+        item_date.text = TimeUtil.timeFormat(article.publishedAt).toUpperCase()
 
         Glide.with(this)
-                .load(Uri.parse(news.urlToImage ?: ""))
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                        itemView.progress.visibility = View.GONE
-                        return false
-                    }
+                .load(Uri.parse(article.urlToImage ?: ""))
+                .listener(listener)
+                .into(itemView.list_item_icon)
+    }
 
-                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                        itemView.progress.visibility = View.GONE
-                        return false
-                    }
-                })
-                .into(itemView.list_item_icon);
+    private val listener = object : RequestListener<Drawable> {
+        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+            itemView.progress.visibility = View.GONE
+            return false
+        }
+
+        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+            itemView.progress.visibility = View.GONE
+            return false
+        }
     }
 }

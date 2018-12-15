@@ -8,7 +8,7 @@ import h.radoslav.au.news.models.Article
 import h.radoslav.au.news.ui.viewholders.NewsViewHolder
 
 
-class NewsViewAdapter() : RecyclerView.Adapter<NewsViewHolder>() {
+class NewsViewAdapter : RecyclerView.Adapter<NewsViewHolder>() {
 
     private var currentList: List<Article> = emptyList()
 

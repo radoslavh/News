@@ -37,3 +37,7 @@ task clean(type: Delete) {
 task runUnitTests(dependsOn: [':app:testDebugUnitTest']) {
     description 'Run all unit tests'
 }
+
+task runAcceptanceTests(dependsOn: [':app:connectedAndroidTest']) {
+    description 'Run all acceptance tests.'
+}
