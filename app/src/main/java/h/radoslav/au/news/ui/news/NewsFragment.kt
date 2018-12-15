@@ -1,61 +1,38 @@
 package h.radoslav.au.news.ui.news
 
 import android.os.Bundle
-import android.support.annotation.NonNull
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import h.radoslav.au.news.NewsApplication
+import androidx.lifecycle.ViewModelProviders
 import h.radoslav.au.news.R
-import h.radoslav.au.news.databinding.FragmentNewsBinding
-import h.radoslav.au.news.datasource.IDataSource
 import h.radoslav.au.news.ui.adapters.NewsViewAdapter
 import h.radoslav.au.news.ui.base.BaseFragment
-
+import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.coroutines.launch
 
 class NewsFragment : BaseFragment() {
 
-    private val adapter: NewsViewAdapter by lazy { NewsViewAdapter() }
+	private val adapter: NewsViewAdapter by lazy { NewsViewAdapter() }
+	private val viewModel by lazy { ViewModelProviders.of(this).get(NewsViewModel::class.java) }
 
-    private val viewModel: NewsViewModel by lazy { NewsViewModel(getDataSource()) }
+	companion object {
+		val TAG: String = this::class.java.simpleName
+	}
 
-    private val CATEGORY = "business"
-    private val LANG = "en"
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savInsState: Bundle?): View =
+			inflater.inflate(R.layout.fragment_news, container, false)
 
-    private lateinit var binding: FragmentNewsBinding
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
 
-    companion object {
-        val TAG: String = NewsFragment::class.java.simpleName
-        fun newInstance() = NewsFragment()
-    }
+		recycleView.adapter = adapter
+		recycleView.setEmptyView(empty_view)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savInsState: Bundle?): View? {
-        binding = FragmentNewsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+		observe(viewModel.article) {
+			adapter.addArticles(it)
+		}
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initRecyclerView()
-        subscribeViewModel()
-    }
-
-    private fun subscribeViewModel() {
-        viewModel.getNews(CATEGORY, LANG).observeForever({
-            adapter.addArticles(it!!.articles)
-        })
-    }
-
-    private fun initRecyclerView() {
-        binding.recycleView.layoutManager = LinearLayoutManager(activity)
-        binding.recycleView.adapter = adapter
-        binding.recycleView.setEmptyView(binding.emptyView)
-    }
-
-    @NonNull
-    private fun getDataSource(): IDataSource {
-        return (activity.applicationContext as NewsApplication).getDataSource()
-    }
+		launch { viewModel.getNews() }
+	}
 }

@@ -1,56 +1,49 @@
 package h.radoslav.au.news.ui.article
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import h.radoslav.au.news.R
 import h.radoslav.au.news.models.Article
 import h.radoslav.au.news.ui.base.BaseFragment
-
+import kotlinx.coroutines.launch
 
 class ArticleFragment : BaseFragment() {
 
-    companion object {
-        val KEY_ARTICLE: String = "article_id"
+	private val viewModel by lazy { ViewModelProviders.of(this).get(ArticleViewModel::class.java) }
+	private val source by lazy { arguments!!.getString(ARTICLE_KEY) }
 
-        val TAG: String = ArticleFragment::class.java.simpleName
+	companion object {
+		val ARTICLE_KEY: String = "article_id"
 
-        fun newInstance(source: String): ArticleFragment {
-            val articleFragment = ArticleFragment()
-            articleFragment.arguments.putString(KEY_ARTICLE, source)
-            return articleFragment
-        }
-    }
+		val TAG: String = this::class.java.simpleName
 
-    private lateinit var viewModel: ArticleViewModel
+		operator fun invoke(source: String) = ArticleFragment().apply {
+			arguments = Bundle(1).apply {
+				putString(ARTICLE_KEY, source)
+			}
+		}
+	}
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savInsState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_article, container, false)
-    }
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savInsState: Bundle?): View =
+			inflater.inflate(R.layout.fragment_article, container, false)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initViewModel()
-        val source = arguments.getString(KEY_ARTICLE)
-        fetchArticle(source)
-    }
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
 
-    private fun initViewModel() {
-        viewModel = ArticleViewModel()
-    }
+		observe(viewModel.article) {
+			onFetchArticle(it)
+		}
+		launch { viewModel.getArticle(source) }
 
-    private fun fetchArticle(source: String) {
-        viewModel.getArticle(source)!!.observeForever({
-            renderArticle(it)
-        })
-    }
+	}
 
-    private fun renderArticle(comment: Article?) {
-//        name.text = comment?.title
-//        email.text = comment?.description
-//        body.text = comment?.author
-    }
+	private fun onFetchArticle(comment: Article) = with(comment) {
+//		name.text = title
+//		email.text = description
+//		body.text = author
+	}
 }
 

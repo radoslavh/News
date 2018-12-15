@@ -1,52 +1,42 @@
 package h.radoslav.au.news.ui.base
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 
 
-open class BaseRecyclerView : RecyclerView {
+open class BaseRecyclerView @JvmOverloads constructor(
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : RecyclerView(context, attrs, defStyleAttr) {
 
-    constructor(context: Context) : super(context)
+    private var emptyView: View? = null
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    private val observer = object : RecyclerView.AdapterDataObserver() {
+        override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) = checkViewIsEmpty()
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
+        override fun onItemRangeInserted(positionStart: Int, itemCount: Int) = checkViewIsEmpty()
 
-    private var mEmptyView: View? = null
-
-    private val mDataObserver = object : RecyclerView.AdapterDataObserver() {
-        override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-            checkViewIsEmpty()
-        }
-
-        override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-            checkViewIsEmpty()
-        }
-
-        override fun onChanged() {
-            checkViewIsEmpty()
-        }
+        override fun onChanged() = checkViewIsEmpty()
     }
 
     override fun setAdapter(adapter: RecyclerView.Adapter<*>?) {
         val oldAdapter = getAdapter()
-        oldAdapter?.unregisterAdapterDataObserver(mDataObserver)
+        oldAdapter?.unregisterAdapterDataObserver(observer)
         super.setAdapter(adapter)
-        adapter?.registerAdapterDataObserver(mDataObserver)
+        adapter?.registerAdapterDataObserver(observer)
 
         checkViewIsEmpty()
     }
 
     private fun checkViewIsEmpty() {
         val isEmptyViewShown = adapter?.itemCount == 0
-        mEmptyView?.visibility = if (isEmptyViewShown) View.VISIBLE else View.GONE
+        emptyView?.visibility = if (isEmptyViewShown) View.VISIBLE else View.GONE
         visibility = if (isEmptyViewShown) View.GONE else View.VISIBLE
     }
 
-    fun setEmptyView(emptyView: View?) {
-        mEmptyView = emptyView
+    fun setEmptyView(emptyView: View) {
+        this.emptyView = emptyView
         checkViewIsEmpty()
     }
 }

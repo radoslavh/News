@@ -1,11 +1,9 @@
 package h.radoslav.au.news.models
 
-import com.google.gson.annotations.SerializedName
-
-data class Article(
-        @SerializedName("author") var author: String? = null,
-        @SerializedName("title") var title: String = "",
-        @SerializedName("description") var description: String = "",
-        @SerializedName("url") var url: String = "",
-        @SerializedName("urlToImage") var urlToImage: String? = null,
-        @SerializedName("publishedAt") var publishedAt: String? = null)
+data class Article(var author: String = "",
+                   var title: String = "",
+                   var description: String = "",
+                   var url: String = "",
+                   var urlToImage: String? = null,
+                   var publishedAt: String? = null
+)

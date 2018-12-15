@@ -4,7 +4,6 @@ import android.os.Bundle
 import h.radoslav.au.news.R
 import h.radoslav.au.news.ui.base.BaseActivity
 
-
 class SourceActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +14,9 @@ class SourceActivity : BaseActivity() {
     }
 
     private fun initFragment() {
-        val fm = fragmentManager
+        val fm = supportFragmentManager
         val tag = SourceFragment.TAG
-        fm.findFragmentByTag(tag) ?: SourceFragment.newInstance().apply {
+        fm.findFragmentByTag(tag) ?: SourceFragment().apply {
             fm.beginTransaction()
                     .add(R.id.container, this, tag)
                     .commit()

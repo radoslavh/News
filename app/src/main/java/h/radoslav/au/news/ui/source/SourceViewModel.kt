@@ -1,12 +1,9 @@
 package h.radoslav.au.news.ui.source
 
-import android.arch.lifecycle.LiveData
-import h.radoslav.au.news.datasource.IDataSource
-import h.radoslav.au.news.models.NewsSource
+import android.app.Application
+import h.radoslav.au.news.ui.base.BaseViewModel
 
-class SourceViewModel(private var remoteData: IDataSource) {
+class SourceViewModel(app: Application) : BaseViewModel(app) {
 
-    fun getNews(source: String): LiveData<NewsSource>
-            = remoteData.getArticles(source)
-
+	fun getNews(source: String) = rest.getArticles(source)
 }

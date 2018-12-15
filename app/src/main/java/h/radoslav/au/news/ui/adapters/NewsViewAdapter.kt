@@ -1,6 +1,6 @@
 package h.radoslav.au.news.ui.adapters
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import h.radoslav.au.news.R
@@ -10,9 +10,9 @@ import h.radoslav.au.news.ui.viewholders.NewsViewHolder
 
 class NewsViewAdapter() : RecyclerView.Adapter<NewsViewHolder>() {
 
-    private val currentList: MutableList<Article> = mutableListOf()
+    private var currentList: List<Article> = emptyList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder? {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return NewsViewHolder(layoutInflater.inflate(R.layout.item_layout, parent, false))
     }
@@ -21,13 +21,10 @@ class NewsViewAdapter() : RecyclerView.Adapter<NewsViewHolder>() {
         holder.bind(currentList.elementAt(position))
     }
 
-    override fun getItemCount(): Int {
-        return currentList.size
-    }
+    override fun getItemCount() = currentList.size
 
     fun addArticles(articles: List<Article>) {
-        currentList.clear()
-        currentList.addAll(articles)
+        currentList = articles
         notifyDataSetChanged()
     }
 }
