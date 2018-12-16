@@ -11,7 +11,7 @@ import h.radoslav.au.news.ui.base.BaseFragment
 class SourceFragment : BaseFragment() {
 
 	companion object {
-		val TAG: String = SourceFragment::class.java.simpleName
+		val TAG: String = this::class.java.simpleName
 	}
 
 

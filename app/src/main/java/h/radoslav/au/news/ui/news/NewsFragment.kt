@@ -33,6 +33,6 @@ class NewsFragment : BaseFragment() {
 			adapter.addArticles(it)
 		}
 
-		launch { viewModel.getNews() }
+		viewModel.getNews()
 	}
 }

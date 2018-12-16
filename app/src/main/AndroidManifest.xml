@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="h.radoslav.au.news">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".NewsApplication"
         android:allowBackup="true"
@@ -19,8 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.source.SourceActivity"/>
-        <activity android:name=".ui.article.ArticleActivity"/>
+        <activity android:name=".ui.source.SourceActivity" />
+        <activity android:name=".ui.article.ArticleActivity" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="1f5c12076ec7404e412d8507e4709a28cb11c6ee" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

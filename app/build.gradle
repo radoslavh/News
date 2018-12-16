@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+
+apply plugin: 'io.fabric'
 
 apply from: '../api.gradle'
 apply from: '../versions.gradle'
@@ -10,6 +12,8 @@ apply from: '../versions.gradle'
 androidExtensions {
     experimental = true
 }
+
+
 
 android {
     compileSdkVersion 28
@@ -65,7 +69,7 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.19'
 
     implementation 'com.github.bumptech.glide:glide:4.7.1'
-    implementation ("com.github.bumptech.glide:recyclerview-integration:4.4.0") {
+    implementation("com.github.bumptech.glide:recyclerview-integration:4.4.0") {
         // Excludes the support library because it's already included by Glide.
         transitive = false
     }
@@ -79,7 +83,20 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'
 
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.7') {
+        transitive = true;
+    }
+
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
 }

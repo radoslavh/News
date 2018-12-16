@@ -36,8 +36,7 @@ class ArticleFragment : BaseFragment() {
 		observe(viewModel.article) {
 			onFetchArticle(it)
 		}
-		launch { viewModel.getArticle(source) }
-
+		viewModel.getArticle(source)
 	}
 
 	private fun onFetchArticle(comment: Article) = with(comment) {
