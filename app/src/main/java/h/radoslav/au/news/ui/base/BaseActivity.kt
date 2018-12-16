@@ -1,16 +1,10 @@
 package h.radoslav.au.news.ui.base
 
-import androidx.annotation.CallSuper
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import h.radoslav.au.news.R
-import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
 
-open class BaseActivity : AppCompatActivity(), CoroutineScope {
-
-	private val job: Job = SupervisorJob()
-	override val coroutineContext: CoroutineContext = job + Dispatchers.Default
+open class BaseActivity : AppCompatActivity() {
 
 	fun replaceFragment(
 			fragment: BaseFragment,
@@ -20,16 +14,10 @@ open class BaseActivity : AppCompatActivity(), CoroutineScope {
 	) {
 		supportFragmentManager.beginTransaction().apply {
 			replace(containerId, fragment)
-				if (addToBackStack) {
-					addToBackStack(backTag)
-				}
+			if (addToBackStack) {
+				addToBackStack(backTag)
+			}
 		}.commit()
-	}
-
-	@CallSuper
-	override fun onDestroy() {
-		job.cancelChildren()
-		super.onDestroy()
 	}
 }
 
